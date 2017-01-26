@@ -24,7 +24,7 @@ def create_shortened_link():
     """
     create a shortened link from the user
     """
-    return {"shortened_link": "patly.com/1"}
+    return {"shortened_link": "http://pat.ly:8080/1"}
 
 @get("/<_identifier>")
 def redirect_to_page(_identifier):
