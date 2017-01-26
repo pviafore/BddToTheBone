@@ -36,6 +36,9 @@ def redirect_to_page(_identifier):
 
 @get("/get-stats")
 def get_stats():
+    """
+    Return a list of stats for each URL we have shown
+    """
     return {"https://google.com": 4,
             "https://python.org" : 5}
 
