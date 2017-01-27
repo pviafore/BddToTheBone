@@ -1,8 +1,8 @@
 """
 A hard-coded webserver meant for PyTN BDD to the Bone talk
 """
-from bottle import  get, post, redirect, run, static_file
-
+from bottle import  get, post, redirect, request, run, static_file
+from url_shortener import URLShortener
 
 @get("/")
 def return_index():
@@ -24,23 +24,27 @@ def create_shortened_link():
     """
     create a shortened link from the user
     """
-    return {"shortened_link": "http://pat.ly:8080/1"}
+    return {"shortened_link": "http://pat.ly:8080/"+url_shortener.shorten(request.json["url"])}
 
+<<<<<<< HEAD
 @get("/<_identifier:int>")
 def redirect_to_page(_identifier):
+=======
+@get("/<_identifier>")
+def redirect_to_page(identifier):
+>>>>>>> Hooking in actual functionality
     """
     redirect to the appropriate id
     param id the id that we've registered
     """
-    redirect("https://google.com")
+    redirect(url_shortener.retrieve(identifier))
 
 @get("/get-stats")
 def get_stats():
     """
     Return a list of stats for each URL we have shown
     """
-    return {"http://pat.ly:8080/1": 4,
-            "http://pat.ly:8080/2" : 5}
+    return url_shortener.get_stats()
 
-
+url_shortener = URLShortener()
 run(host="0.0.0.0", reloader=True)
