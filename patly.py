@@ -24,20 +24,18 @@ def create_shortened_link():
     """
     create a shortened link from the user
     """
-    return {"shortened_link": "http://pat.ly:8080/"+url_shortener.shorten(request.json["url"])}
+    index = url_shortener.shorten(request.json["url"])
+    print index
+    return {"shortened_link": "http://pat.ly:8080/{}".format(index) }
 
-<<<<<<< HEAD
-@get("/<_identifier:int>")
-def redirect_to_page(_identifier):
-=======
-@get("/<_identifier>")
+@get("/<identifier:int>")
 def redirect_to_page(identifier):
->>>>>>> Hooking in actual functionality
     """
     redirect to the appropriate id
     param id the id that we've registered
     """
-    redirect(url_shortener.retrieve(identifier))
+    url = url_shortener.retrieve(identifier)
+    redirect(url)
 
 @get("/get-stats")
 def get_stats():
