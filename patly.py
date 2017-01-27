@@ -25,7 +25,6 @@ def create_shortened_link():
     create a shortened link from the user
     """
     index = url_shortener.shorten(request.json["url"])
-    print index
     return {"shortened_link": "http://pat.ly:8080/{}".format(index) }
 
 @get("/<identifier:int>")
