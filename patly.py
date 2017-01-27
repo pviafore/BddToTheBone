@@ -26,7 +26,7 @@ def create_shortened_link():
     """
     return {"shortened_link": "http://pat.ly:8080/1"}
 
-@get("/<_identifier>")
+@get("/<_identifier:int>")
 def redirect_to_page(_identifier):
     """
     redirect to the appropriate id
@@ -39,8 +39,8 @@ def get_stats():
     """
     Return a list of stats for each URL we have shown
     """
-    return {"https://google.com": 4,
-            "https://python.org" : 5}
+    return {"http://pat.ly:8080/1": 4,
+            "http://pat.ly:8080/2" : 5}
 
 
 run(host="0.0.0.0", reloader=True)
