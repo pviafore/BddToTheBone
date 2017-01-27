@@ -15,7 +15,8 @@ function sendShortenRequest() {
         $.ajax({
             url: "/createShortenedLink",
             method: "post",
-            data: { url: textInput },
+            data: JSON.stringify({ url: textInput }),
+            contentType: "application/json",
             dataType: "json",
             success: displayLink
         });
