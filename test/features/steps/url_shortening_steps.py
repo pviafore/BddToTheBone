@@ -25,8 +25,7 @@ def step_impl(context):
 
 @when(u'we navigate to that shortened URL')
 def step_impl(context):
-    #navigate to the url
-    raise NotImplementedError(u'STEP: When we navigate to that shortened URL')
+    context.browser.get(context.shortened_url)
 
 @when(u'we look at the stats on the homepage')
 def step_impl(context):
