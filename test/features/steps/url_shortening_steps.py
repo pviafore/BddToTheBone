@@ -4,18 +4,22 @@ from requests import get
 def step_impl(context, url):
     context.url = url
 
+import time
 @given(u'we have shortened the url {url}')
 def step_impl(context, url):
     context.browser.find_element_by_id("input").send_keys(url)
     context.browser.find_element_by_id("get-short-link").click()
     context.url = url
     context.shortened_url = context.browser.find_element_by_id("return-link").text
+    context.mapping[context.url] = context.shortened_url
 
 @given(u'we navigate to that shortened url {num_times} times')
 def step_impl(context, num_times):
     # go to the url 
     for _ in range(int(num_times)):
         context.browser.get(context.shortened_url)
+    #reset back to the original page
+    context.browser.get("http://pat.ly:8080")
 
 @when(u'we shorten it through our service')
 def step_impl(context):
@@ -47,4 +51,4 @@ def step_impl(context):
 
 @then(u'we see the shortened URL for {url} has been visited {num_times} times')
 def step_impl(context, url, num_times):
-    assert context.stats[url] == num_times
+    assert context.stats[context.mapping[url]] == num_times
