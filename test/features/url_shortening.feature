@@ -10,7 +10,7 @@ Feature: Our service makes short URLs out of long URLs
   Scenario: Retrieving an URL is fast
     Given we have shortened the url http://www.python.org
     When we navigate to that shortened URL
-    Then we arrive at the http://www.python.org as fast as possible
+    Then we arrive at http://www.python.org as fast as possible
 
   Scenario: Getting Stats
     Given we have shortened the url http://www.python.org
