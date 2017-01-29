@@ -1,10 +1,8 @@
-from requests import get
 
 @given(u'a url {url}')
 def step_impl(context, url):
     context.url = url
 
-import time
 @given(u'we have shortened the url {url}')
 def step_impl(context, url):
     context.browser.find_element_by_id("input").send_keys(url)
