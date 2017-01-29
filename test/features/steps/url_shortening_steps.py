@@ -9,7 +9,7 @@ def step_impl(context, url):
     context.browser.find_element_by_id("input").send_keys(url)
     context.browser.find_element_by_id("get-short-link").click()
     context.url = url
-    context.shortened_url = context.browser.find_element_by_id("new-link").text
+    context.shortened_url = context.browser.find_element_by_id("return-link").text
 
 @given(u'we navigate to that shortened url {num_times} times')
 def step_impl(context, num_times):
@@ -21,7 +21,7 @@ def step_impl(context, num_times):
 def step_impl(context):
     context.browser.find_element_by_id("input").send_keys(context.url)
     context.browser.find_element_by_id("get-short-link").click()
-    context.shortened_url = context.browser.find_element_by_id("new-link").text
+    context.shortened_url = context.browser.find_element_by_id("return-link").text
 
 @when(u'we navigate to that shortened URL')
 def step_impl(context):
@@ -36,14 +36,14 @@ def step_impl(context):
         context.stats[cells[0]] = cells[1]
 
 
-@then(u'we arrive at the {url} as fast as possible')
+@then(u'we arrive at {url} as fast as possible')
 def step_impl(context, url):
     assert url == context.browser.current_url
     #how do we test speed?
 
 @then(u'we should receive a shortened URL')
 def step_impl(context):
-    assert context.browser.find_element_by_id("new-link").text.startswith("http://pat.ly:8080")
+    assert context.browser.find_element_by_id("return-link").text.startswith("http://pat.ly:8080")
 
 @then(u'we see the shortened URL for {url} has been visited {num_times} times')
 def step_impl(context, url, num_times):
