@@ -24,7 +24,7 @@ function sendShortenRequest() {
 }
 
 function displayLink(data) {
-    $("#return-link").text("Your new link is: " + data.shortened_link)
+    $("#return-link").text("Your new link is: <span id=\"new-link\">" + data.shortened_link + "</span>")
 }
 
 function loadStats() {
