@@ -51,4 +51,5 @@ def step_impl(context):
 
 @then(u'we see the shortened URL for {url} has been visited {num_times} times')
 def step_impl(context, url, num_times):
+    #this is the step that should fail, given our implementation
     assert context.stats[context.mapping[url]] == num_times
