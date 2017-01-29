@@ -39,11 +39,10 @@ def step_impl(context):
 @then(u'we arrive at the {url} as fast as possible')
 def step_impl(context, url):
     assert url == context.browser.current_url
-    #how do we test speed
+    #how do we test speed?
 
 @then(u'we should receive a shortened URL')
 def step_impl(context):
-    
     assert context.browser.find_element_by_id("new-link").text.startswith("http://pat.ly:8080")
 
 @then(u'we see the shortened URL for {url} has been visited {num_times} times')
