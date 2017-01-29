@@ -1,21 +1,27 @@
+from requests import get
+
 @given(u'a url {url}')
 def step_impl(context, url):
     context.url = url
 
 @given(u'we have shortened the url {url}')
 def step_impl(context, url):
-    context.shortened_url = ""
-    raise NotImplementedError(u'STEP: Given we have shortened the url ' + url)
+    context.browser.find_element_by_id("input").send_keys(url)
+    context.browser.find_element_by_id("get-short-link").click()
+    context.url = url
+    context.shortened_url = browser.find_element_by_id("return-link").text
 
 @given(u'we navigate to that shortened url {num_times} times')
 def step_impl(context, num_times):
     # go to the url 
-    raise NotImplementedError(u'STEP: Given we navigate to that shortened url {} times'.format(num_times))
+    for _ in range(num_times):
+        context.browser.get(context.shortened_url)
 
 @when(u'we shorten it through our service')
 def step_impl(context):
-    # make a request through our service
-    raise NotImplementedError(u'STEP: When we shorten it through our service')
+    context.browser.find_element_by_id("input").send_keys(context.url)
+    context.browser.find_element_by_id("get-short-link").click()
+    context.shortened_url = browser.find_element_by_id("return-link").text
 
 @when(u'we navigate to that shortened URL')
 def step_impl(context):
