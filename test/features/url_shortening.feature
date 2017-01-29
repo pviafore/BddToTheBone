@@ -19,5 +19,5 @@ Feature: Our service makes short URLs out of long URLs
     And we navigate to that shortened url 3 times
     When we look at the stats on the homepage
     Then we see the shortened URL for http://www.python.org has been visited 2 times
-    And we see the shortened URL http://google.com has been visited 3 times
+    And we see the shortened URL for http://google.com has been visited 3 times
 
